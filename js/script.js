@@ -9,6 +9,10 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
   });
 });
 
+
+
+
+
 (function (global) {
 
 var dc = {};
@@ -92,8 +96,8 @@ function buildAndShowHomeHTML (categories) {
 
   $ajaxUtils.sendGetRequest(
     homeHtmlUrl,
-    function (homeHtml) {
-      var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
+    function (responseText) {
+      document.querySelector("#main-conetent").innerHTML = responseText
 
       // TODO: STEP 2: Here, call chooseRandomCategory, passing it retrieved 'categories'
       // Pay attention to what type of data that function returns vs what the chosenCategoryShortName
@@ -114,7 +118,8 @@ function buildAndShowHomeHTML (categories) {
       //
       // var homeHtmlToInsertIntoMainPage = ....
       chosenCategoryShortName = "'" + chosenCategoryShortName + "'"
-      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortname", chosenCategoryShortName);
+      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml,
+         "{{randomCategoryShortname}}", chosenCategoryShortName);
 
 
       // TODO: STEP 4: Insert the produced HTML in STEP 3 into the main page
